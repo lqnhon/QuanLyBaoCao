@@ -59,33 +59,31 @@ namespace QuanLyBaoCao.Controllers
         {
             //var ii = new QVCore4QLC2.KTTH.XuatDuLieu();
             //DataSet ds1 = ii.QLNS_IV7_LoadNK(2019);
-            //bool isLogin = Utility.checkLogin();
-            //if (isLogin)
-            //{
-            //    QVCore4QLC2.KTTH.DanhMuc_Chon dm = new QVCore4QLC2.KTTH.DanhMuc_Chon();
-            //    DataTable dt = dm.DonViC();
-            //    return View(dt);
-            //}
-            //else
-            //{
-                
-            //}
-            if (ClientSso.Ins.CurrentSessionLoginInfo != null)
+            bool isLogin = Utility.checkLogin();
+            if (isLogin)
             {
-                var user = ClientSso.Ins.CurrentSessionLoginInfo;
-                Login c = new Login();
-                c.User = user.HoVaTen;
-                Session["IsLogin"] = c;
-
+                QVCore4QLC2.KTTH.DanhMuc_Chon dm = new QVCore4QLC2.KTTH.DanhMuc_Chon();
+                DataTable dt = dm.DonViC();
+                return View(dt);
             }
             else
             {
-                return Redirect("/Home/Login/");
-            }
+                if (ClientSso.Ins.CurrentSessionLoginInfo != null)
+                {
+                    var user = ClientSso.Ins.CurrentSessionLoginInfo;
+                    Login c = new Login();
+                    c.User = user.HoVaTen;
+                    Session["IsLogin"] = c;
 
-            QVCore4QLC2.KTTH.DanhMuc_Chon dm = new QVCore4QLC2.KTTH.DanhMuc_Chon();
-            DataTable dt = dm.DonViC();
-            return View(dt);
+                    QVCore4QLC2.KTTH.DanhMuc_Chon dm = new QVCore4QLC2.KTTH.DanhMuc_Chon();
+                    DataTable dt = dm.DonViC();
+                    return View(dt);
+                }
+                else
+                {
+                    return Redirect("/Home/Login/");
+                }
+            }
         }
         public JToken Logout()
         {
