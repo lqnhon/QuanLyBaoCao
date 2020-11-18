@@ -1,0 +1,31 @@
+﻿button.close span {
+    position: absolute;
+    top: 9px;
+    right: 9px;
+}
+tr.selected {
+    background: #acbad4 !important;
+}
+/*#side-menu {
+    height: 800px;
+    overflow: auto;
+}*/
+th {
+    border-bottom: 0px solid #111 !important;
+    background-color: #009fd0;
+    color: white;
+}
+tr {
+    background-color: #ffffff !important;
+}
+table#tableHomePage {
+
+}
+table.dataTable {
+    border-collapse: collapse !important;
+}
+.btn {
+    padding: 4px 8px !important;
+    line-height: 20px;
+    font-size: 11px;
+}

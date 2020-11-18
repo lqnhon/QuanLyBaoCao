@@ -1,0 +1,400 @@
+﻿@using QuanLyBaoCao.Models;
+
+@{
+    ViewBag.Title = "Home Page";
+    Login c = (Login)System.Web.HttpContext.Current.Session["IsLogin"];
+    System.Data.DataTable dtResult = Model;
+    var a = new QVCore4QLC2.KTTH.Home();
+    int yearHome = 2019;
+    var dtHome = a.QLNS_Home_getlist(yearHome, "1007201");
+}
+
+<div>
+    <input type="hidden" id="objUnit" value="" data-name="" />
+    <input type="hidden" id="objMa_SelectModal_System" value="" />
+    <input type="hidden" id="objTitle_SelectModal_System" value="" />
+    <!--BEGIN BACK TO TOP-->
+    @*<a id="totop" href="#"><i class="fa fa-angle-up"></i></a>*@
+    <!--END BACK TO TOP-->
+    <!--BEGIN TOPBAR-->
+    <div id="header-topbar-option-demo" class="page-header-topbar">
+        <nav id="topbar" role="navigation" style="margin-bottom: 0; z-index: 2;" class="navbar navbar-default navbar-static-top">
+
+            <div class="topbar-main">
+                <a id="menu-toggle" href="javascript:SetToggle()"><i class="fa fa-bars"></i></a>
+                <a id="logo" href="/" class="navbar-brand"><span class="logo-text">HỆ THỐNG QUẢN LÝ BÁO CÁO - SỞ TÀI CHÍNH</span><span style="display: none" class="logo-text-icon"></span></a>
+
+                <ul class="nav navbar navbar-top-links navbar-right mbn">
+                    <li class="dropdown topbar-user">
+                        <a data-hover="dropdown" href="#" class="dropdown-toggle">
+                            <img src="~/Scripts/Lib_Web/css/themes/style1/Images/usser.jpg" />
+                            @if (c != null)
+                            {
+                                <span class="hidden-xs" id="userlogin_name">@c.User</span>
+                            }
+                            &nbsp;<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user pull-right">
+                            @*<li id="thongtinlogin"><a href="/Thietlap/Thongtin?id=MzE4NHx0ZWNobGlmZQ2"><i class="fa fa-user"></i>Thông tin người dùng</a></li>*@
+                            <li>
+                                @*<a href="#"><i class="fa fa-user"></i>Thông tin người dùng</a>*@
+                            </li>
+                            <li>
+                                <a href="javascript:LogOut()"><i class="fa fa-key"></i>Đăng xuất</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+                <!--END THEME SETTING-->
+
+            </div>
+        </nav>
+
+    </div>
+    <!--END TOPBAR-->
+    <div id="">
+        <!--BEGIN SIDEBAR MENU-->
+        <nav id="" role="navigation" class="navbar-default navbar-static-side">
+            <div id="anhhien" class="sidebar-collapse menu-scroll" style="height: auto;">
+                <ul id="side-menu" class="nav">
+                    <li>
+                        <a href="/Home/Index"><i class="fa fa-home fa-fw"></i><span class="menu-title">Trang chủ</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i><span class="menu-title">Số liệu</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li class=""><a href="javascript:LoadSoLieu('SLTHTC')"><span class="submenu-title">Số liệu chỉ tiêu THTC</span></a></li>
+                            <li class=""><a href="javascript:LoadSoLieu('SLKQHD')"><span class="submenu-title">Số liệu chỉ tiêu KQHD</span></a></li>
+                            <li class=""><a href="javascript:LoadSoLieu('SLLCTT_GT')"><span class="submenu-title">Số liệu chỉ tiêu LCTT-GT</span></a></li>
+                            <li class=""><a href="javascript:LoadSoLieu('SLTM_BCTC')"><span class="submenu-title">Số liệu chỉ tiêu TM BCTC</span></a></li>
+                            <li class=""><a href="javascript:LoadSoLieu('SLBSTTTC_P2')"><span class="submenu-title">Số liệu chỉ tiêu bổ sung TTTC-P2</span></a></li>
+                            <li class=""><a href="javascript:LoadSoLieu('SLQTTCCN')"><span class="submenu-title">Số liệu quyết toán Thu chi - Các nguồn</span></a></li>
+                            <li class=""><a href="javascript:LoadSoLieu('SLTDTPLP')"><span class="submenu-title">Số liệu Xét duyệt(Thẩm định) Thu phí, Lệ phí</span></a></li>
+                            <li class=""><a href="javascript:LoadSoLieu('TT1372017BTC')"><span class="submenu-title">Đối chiếu số liệu KQHD TT137/2017-BTC</span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-pencil-square-o"></i><span class="menu-title">Nhập liệu</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li class=""><a href="javascript:LoadNhapLieu('B01BCTC_TT99')"><span class="submenu-title">Nhập Báo cáo tài chính tổng hợp B01/BCTC–TH TT99</span></a></li>
+                            <li class=""><a href="javascript:LoadNhapLieu('B02BCTC_TT99')"><span class="submenu-title">Nhập Báo cáo kết quả hoạt động tổng hợp B02/BCTC–TH TT99</span></a></li>
+                            <li class=""><a href="javascript:LoadNhapLieu('B03BCTC_TT99')"><span class="submenu-title">Nhập Báo cáo lưu chuyển tiền tệ tổng hợp B03/BCTC–TH TT99</span></a></li>
+                            <li class=""><a href="javascript:LoadNhapLieu('B04BCTC_TT99')"><span class="submenu-title">Nhập Thuyết minh báo cáo tài chính tổng hợp B04/BCTC–TH TT99</span></a></li>
+                            <li class=""><a href="javascript:LoadNhapLieu('B01BSTT_TT99')"><span class="submenu-title">Nhập Báo cáo bổ sung tài chính B01/BSTT TT99</span></a></li>
+                            <li class=""><a href="javascript:LoadNhapLieu('B01BCTC_TT107')"><span class="submenu-title">Nhập Báo cáo tài chính tổng hợp B01/BCTC–TH TT107</span></a></li>
+                            <li class=""><a href="javascript:LoadNhapLieu('B02BCTC_TT107')"><span class="submenu-title">Nhập Báo cáo kết quả hoạt động tổng hợp B02/BCTC–TH TT107</span></a></li>
+                            <li class=""><a href="javascript:LoadNhapLieu('B03BCTC_TT107')"><span class="submenu-title">Nhập Báo cáo lưu chuyển tiền tệ tổng hợp B03a/BCTC–TH TT107</span></a></li>
+                            <li class=""><a href="javascript:LoadNhapLieu('B04BCTC_TT107')"><span class="submenu-title">Nhập Thuyết minh báo cáo tài chính tổng hợp B04/BCTC–TH TT107</span></a></li>
+                            <li class=""><a href="javascript:LoadNhapLieu('B01BSTT_TT107')"><span class="submenu-title">Nhập Báo cáo bổ sung tài chính B01/BSTT TT107</span></a></li>
+                            <li class=""><a href="javascript:LoadNhapLieu('B01BCTC_TT107GT')"><span class="submenu-title">Nhập Báo cáo tài chính tổng hợp B01/BCTC–TH TT107 GT</span></a></li>
+                            <li class=""><a href="javascript:LoadNhapLieu('B02BCTC_TT107GT')"><span class="submenu-title">Nhập Báo cáo kết quả hoạt động tổng hợp B02/BCTC–TH TT107 GT</span></a></li>
+                            <li class=""><a href="javascript:LoadNhapLieu('B03BCTC_TT107GT')"><span class="submenu-title">Nhập Báo cáo lưu chuyển tiền tệ tổng hợp B03b/BCTC–TH TT107 GT</span></a></li>
+                            <li class=""><a href="javascript:LoadNhapLieu('B04BCTC_TT107GT')"><span class="submenu-title">Nhập Thuyết minh báo cáo tài chính tổng hợp B04/BCTC–TH TT107 GT</span></a></li>
+                            <li class=""><a href="javascript:LoadNhapLieu('B01BSTT_TT107GT')"><span class="submenu-title">Nhập Báo cáo bổ sung tài chính B01/BSTT TT107 GT</span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:LoadBaoCao('-1')"><i class="fa fa-file fa-fw"></i><span class="menu-title">Báo cáo</span></a>
+                        @*<ul class="nav nav-second-level collapse">
+                                <li class=""><a href="javascript:LoadBaoCao('107B01BCQT')"><span class="submenu-title">Báo cáo quyết toán kinh phí hoạt động(Mẫu B01-BCQT)</span></a></li>
+                                <li class=""><a href="javascript:LoadBaoCao('107B01BCTC')"><span class="submenu-title">Báo cáo tình hình tài chính(Mẫu B01/BCTC)</span></a></li>
+                                <li class=""><a href="javascript:LoadBaoCao('107B02BCTC')"><span class="submenu-title">Báo cáo kết quả hoạt động(Mẫu B02/BCTC)</span></a></li>
+                                <li class=""><a href="javascript:LoadBaoCao('107B03aBCTC')"><span class="submenu-title">Báo cáo lưu chuyển tiền tệ (theo phương pháp gián tiếp)(Mẫu số B03a/BCTC)</span></a></li>
+                                <li class=""><a href="javascript:LoadBaoCao('107B03bBCTC')"><span class="submenu-title">Báo cáo lưu chuyển tiền tệ (theo phương pháp gián tiếp)(Mẫu số B03b/BCTC)</span></a></li>
+                                <li class=""><a href="javascript:LoadBaoCao('107B04BCTC')"><span class="submenu-title">Thuyết minh báo cáo tài chính (Mẫu B04/BCTC)</span></a></li>
+                                <li class=""><a href="javascript:LoadBaoCao('B01H')"><span class="submenu-title">Xuất B01-H</span></a></li>
+
+                                <li class=""><a href="#" data-toggle="modal" data-target="#InputModal_BaoCao99"><span class="submenu-title">Báo cáo theo TT99</span></a></li>
+                                <li class=""><a href="#" data-toggle="modal" data-target="#InputModal_BaoCao107"><span class="submenu-title">Báo cáo theo TT107</span></a></li>
+                                <li class=""><a href="#" data-toggle="modal" data-target="#InputModal_BaoCao107TG"><span class="submenu-title">Báo cáo theo TT107 GT</span></a></li>
+
+                                <li class=""><a href="javascript:LoadBaoCao('F01_01_BCQT')"><span class="submenu-title">Xuất báo cáo truy quỹ F01-01-BCQT</span></a></li>
+                            </ul>*@
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa fa-cogs fa-fw"></i><span class="menu-title">Hệ thống</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li class=""><a href="javascript:LoadHeThong('HTDonviCap1')"><span class="submenu-title">Danh sách đơn vị dự toán cấp 1</span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-folder-open fa-fw"></i><span class="menu-title">Danh mục</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li class=""><a href="javascript:LoadDanhMuc('DMDonvi')"><span class="submenu-title">Danh mục Đơn vị cấp dưới</span></a></li>
+                            <li class=""><a href="javascript:LoadDanhMuc('DMTaiKhoan')"><span class="submenu-title">Danh mục Tài khoản</span></a></li>
+                            <li class=""><a href="javascript:LoadDanhMuc('DMNguonVon')"><span class="submenu-title">Danh mục Nguồn vốn</span></a></li>
+                            <li class=""><a href="javascript:LoadDanhMuc('DMLoaiKhoan')"><span class="submenu-title">Danh mục Loại khoản</span></a></li>
+                            <li class=""><a href="javascript:LoadDanhMuc('DMNguonKP')"><span class="submenu-title">Danh mục Nguồn kinh phí</span></a></li>
+                            <li class=""><a href="javascript:LoadDanhMuc('DMMuc')"><span class="submenu-title">Danh mục Mục</span></a></li>
+                            <li class=""><a href="javascript:LoadDanhMuc('DMHDSN')"><span class="submenu-title">Danh mục Hoạt động sự nghiệp</span></a></li>
+                            <li class=""><a href="javascript:LoadDanhMuc('DMQTPKHD')"><span class="submenu-title">Danh mục chi tiêu QT kinh phí HĐ</span></a></li>
+                            <li class=""><a href="javascript:LoadDanhMuc('DMTHTC')"><span class="submenu-title">Danh mục chi tiêu THTC</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="page-wrapper">
+            <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+                <ol class="breadcrumb page-breadcrumb pull-left" id="page-current-url">
+                    <li><i class="fa fa-home"></i>&nbsp;Trang chủ&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                </ol>
+                <div class="clearfix"></div>
+            </div>
+            <input type="hidden" value="" id="type_Categories">
+            <input type="hidden" value="" id="type_Data">
+            <input type="hidden" value="" id="type_Report">
+            <input type="hidden" value="" id="type_System">
+            <input type="hidden" value="" id="type_Input">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-lg-12">
+                        @*<div class="col-lg-1" style="padding-left: 0px;padding-right: 0px;">
+                                <label for="homeYear" class="control-label">Năm</label><span class="require">(*)</span>
+                            </div>
+                            <input type="number" class="form-control-sm col-lg-3" id="homeYear" value="2019" style="margin-left: -50px;">
+                            <div class="col-lg-3">
+                                <button class="btn btn-success" onclick="SearchHomeYear()">Tìm kiếm</button>
+                            </div>*@
+                        <div class="portlet box portlet-blue">
+                            <div class="portlet-header">
+                                <div class="caption">
+                                    Tìm kiếm mẫu báo cáo
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <form role="form" class="form-horizontal form-separated">
+                                    <div class="form-body">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-md-4 control-label">
+                                                    <strong>Năm <span class="require">(*)</span></strong>
+                                                </label>
+                                                <div class="col-md-1">
+                                                    <input type="number" class="form-control" id="homeYear" value="2019">
+                                                </div>
+                                                <div class="col-md-1 text-left">
+                                                    <button type="submit" class="btn btn-success">
+                                                        Tìm kiếm
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-lg-12" id="HomePage_wrapper">
+                        <table id="tableHomePage" class="table table-bordered" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Stt</th>
+                                    <th>Mã</th>
+                                    <th>Tên cơ quan</th>
+                                    <th>Chi Tabmis</th>
+                                    <th>Chi kế toán</th>
+                                    <th>Chênh lệch</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    for (int i = 0; i < dtHome.Rows.Count; i++)
+                                    {
+                                        <tr id="tr_@dtHome.Rows[i]["ma"].ToString()">
+                                            <td>@dtHome.Rows[i]["stt"].ToString()</td>
+                                            <td>@dtHome.Rows[i]["ma"].ToString()</td>
+                                            <td>@dtHome.Rows[i]["ten"].ToString()</td>
+                                            <td class="text-right">@Utility.formatCurrency(dtHome.Rows[i]["ctab"].ToString())</td>
+                                            <td class="text-right">@Utility.formatCurrency(dtHome.Rows[i]["ckt"].ToString())</td>
+                                            <td class="text-right">@Utility.formatCurrency(dtHome.Rows[i]["clech"].ToString())</td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<button class="btn btn-primary btn-lg" data-toggle="modal" id="openModal" data-target="#myModal" style="display:none">
+    Launch demo modal
+</button>
+
+<div class="modal fade" id="InputModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+<div class="modal fade" id="CategoriesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+<div class="modal fade" id="SystemModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+<div class="modal fade" id="ReportModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+
+<div class="modal fade" id="InputModal_BaoCao99" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Báo cáo theo thông tư TT99</h4>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li class=""><a href="javascript:LoadBaoCao('B01BSTT')"><span class="submenu-title" style=" font-size: 16px; ">Xuất B01/BSTT - TT99</span></a></li>
+                    <li class=""><a href="javascript:LoadBaoCao('B01BCTC_TT99')"><span class="submenu-title" style=" font-size: 16px; ">Xuất B01/BCTC - TT99</span></a></li>
+                    <li class=""><a href="javascript:LoadBaoCao('B02BCTC_TT99')"><span class="submenu-title" style=" font-size: 16px; ">Xuất B02/BCTC - TT99</span></a></li>
+                    <li class=""><a href="javascript:LoadBaoCao('B03BCTC_TT99')"><span class="submenu-title" style=" font-size: 16px; ">Xuất B03/BCTC - TT99</span></a></li>
+                    <li class=""><a href="javascript:LoadBaoCao('B04BCTC_TT99')"><span class="submenu-title" style=" font-size: 16px; ">Xuất B04/BCTC - TT99</span></a></li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="closeModal" class="btn btn-default" data-dismiss="modal" />
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="InputModal_BaoCao107" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Báo cáo theo thông tư TT107</h4>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li class=""><a href="javascript:LoadBaoCao('B01BSTT_TT107')"><span class="submenu-title" style=" font-size: 16px; ">Xuất B01/BSTT - TT107</span></a></li>
+                    <li class=""><a href="javascript:LoadBaoCao('B01BCTC_TT107')"><span class="submenu-title" style=" font-size: 16px; ">Xuất B01/BCTC - TT107</span></a></li>
+                    <li class=""><a href="javascript:LoadBaoCao('B02BCTC_TT107')"><span class="submenu-title" style=" font-size: 16px; ">Xuất B02/BCTC - TT107</span></a></li>
+                    <li class=""><a href="javascript:LoadBaoCao('B03BCTC_TT107')"><span class="submenu-title" style=" font-size: 16px; ">Xuất B03/BCTC - TT107</span></a></li>
+                    <li class=""><a href="javascript:LoadBaoCao('B04BCTC_TT107')"><span class="submenu-title" style=" font-size: 16px; ">Xuất B04/BCTC - TT107</span></a></li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="closeModal" class="btn btn-default" data-dismiss="modal" />
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="InputModal_BaoCao107TG" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Báo cáo theo thông tư TT107TG</h4>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li class=""><a href="javascript:LoadBaoCao('B01BSTT_TT107TG')"><span class="submenu-title" style=" font-size: 16px; ">Xuất B01/BSTT - TT107TG</span></a></li>
+                    <li class=""><a href="javascript:LoadBaoCao('B01BCTC_TT107TG')"><span class="submenu-title" style=" font-size: 16px; ">Xuất B01/BCTC - TT107TG</span></a></li>
+                    <li class=""><a href="javascript:LoadBaoCao('B02BCTC_TT107TG')"><span class="submenu-title" style=" font-size: 16px; ">Xuất B02/BCTC - TT107TG</span></a></li>
+                    <li class=""><a href="javascript:LoadBaoCao('B03BCTC_TT107TG')"><span class="submenu-title" style=" font-size: 16px; ">Xuất B03/BCTC - TT107TG</span></a></li>
+                    <li class=""><a href="javascript:LoadBaoCao('B04BCTC_TT107TG')"><span class="submenu-title" style=" font-size: 16px; ">Xuất B04/BCTC - TT107TG</span></a></li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="closeModal" class="btn btn-default" data-dismiss="modal" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" style="width: 50vw;">
+        <div class="modal-content">
+            <div class="modal-header">-->
+@*<button type="button" class="close" data-dismiss="modal">
+        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+    </button>*@
+<!--<h4 class="modal-title" id="myModalLabel">Danh sách Đơn Vị</h4>
+            </div>
+            <div class="modal-body">
+                <table id="exampleUnit" class="display table table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã đơn</th>
+                            <th>Tên đơn vị</th>
+                            <th>DVTH</th>
+                            <th>Năm</th>
+                            <th>Cấp</th>
+                            <th>Cấp trên</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            for (int i = 0; i < dtResult.Rows.Count; i++)
+                            {
+                                <tr>
+                                    <td>@(i + 1)</td>
+                                    <td>@dtResult.Rows[i]["ma"].ToString()</td>
+                                    <td>@dtResult.Rows[i]["ten"].ToString()</td>
+                                    <td>@dtResult.Rows[i]["ma_captren"].ToString()</td>
+                                    <td>@DateTime.Now.Year</td>
+                                    <td>@dtResult.Rows[i]["cap"].ToString()</td>
+                                    <td></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="closeModal" class="btn btn-default" data-dismiss="modal" />
+                <button type="button" class="btn btn-primary" onclick="selectedUnit()">Chọn</button>
+            </div>
+        </div>
+    </div>
+</div>-->
+<script>
+    $(document).ready(function () {
+        //$("#openModal").click();        
+        var objUnit_key = sessionStorage.getItem("ssUnit_key");
+        var objUnit_value = sessionStorage.getItem("ssUnit_value");
+        if (objUnit_key) {
+            document.getElementById('objUnit').value = objUnit_key;
+            document.getElementById('objUnit').setAttribute('data-name', objUnit_value);
+            $('#tr_' + objUnit_key).addClass('selected');
+        }
+        var tableHome = $('#tableHomePage').DataTable({
+            "pageLength": 25,
+            "order": [],
+            "ordering": false
+        });
+        //var table = $('#exampleUnit').DataTable({
+        //    "pageLength": 10,
+        //    "order": [],
+        //    "ordering": false
+        //});
+        $('#tableHomePage tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+                document.getElementById('objUnit').value = '';
+                document.getElementById('objUnit').setAttribute('data-name', '');
+            }
+            else {
+                tableHome.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+                var data = tableHome.row(this).data();
+                document.getElementById('objUnit').value = data[1];
+                document.getElementById('objUnit').setAttribute('data-name', data[2].replace("&gt;", "").replace("&gt;", ""));
+
+                sessionStorage.setItem("ssUnit_key", data[1]);
+                sessionStorage.setItem("ssUnit_value", data[2].replace("&gt;", "").replace("&gt;", ""));
+            }
+        });
+    });
+</script>
+@*<div id="footer">
+        <div class="copyright">
+            2019 © Bản quyền của Đinh Thanh Hiền
+        </div>
+    </div>*@

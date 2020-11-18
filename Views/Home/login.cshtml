@@ -1,0 +1,379 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+<style>
+    a {
+        color: #92badd;
+        display: inline-block;
+        text-decoration: none;
+        font-weight: 400;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+        display: inline-block;
+        margin: 20px 8px 10px 8px;
+        color: #cccccc;
+        cursor: pointer;
+    }
+
+    #icon {
+        width: 24%;
+    }
+
+    #icon1 {
+        width: 8%;
+    }
+    /* STRUCTURE */
+    .container1 {
+        background-color: #56baed;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .wrapper {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+/*        width: 100%;*/
+        min-height: 100%;
+        padding: 0px;
+        /*background: #56baed;*/
+        background-image: url(../../Scripts/Lib_Web/Images/backgound_login.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size:cover;
+    }
+
+    .formContent {
+        padding: 30px;
+        position: absolute;
+        padding: 0px;
+        text-align: center;
+        top: 117px;
+    }
+
+    #formFooter {
+        background-color: #f6f6f6;
+        border-top: 1px solid #dce8f1;
+        padding: 25px;
+        text-align: center;
+        -webkit-border-radius: 0 0 10px 10px;
+        border-radius: 0 0 10px 10px;
+    }
+
+
+
+    /* TABS */
+
+    .inactive {
+        color: #cccccc;
+    }
+
+    /*.active {
+          color: #0d0d0d;
+          border-bottom: 2px solid #5fbae9;
+        }*/
+
+    .underlineHover:after {
+        display: block;
+        left: 0;
+        bottom: -10px;
+        width: 0;
+        height: 2px;
+        background-color: #56baed;
+        content: "";
+        transition: width 0.2s;
+    }
+
+    .underlineHover:hover {
+        color: #0d0d0d;
+    }
+
+        .underlineHover:hover:after {
+            width: 100%;
+        }
+
+    input[type='text'], input[type='password']{
+        height: 35px;
+        border-color: #e5e5e5;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        color: #777777;
+    }
+
+
+
+    input[type=button], input[type=submit], input[type=reset] {
+        background-color: #56baed;
+        border: none;
+        color: white;
+        padding: 10px 80px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        text-transform: uppercase;
+        font-size: 13px;
+        margin-bottom: 10px;
+        -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+        box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+        -webkit-border-radius: 5px 5px 5px 5px;
+        border-radius: 5px 5px 5px 5px;
+        margin: 5px 20px 30px 20px;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+
+        input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover {
+            background-color: #39ace7;
+        }
+
+        input[type=button]:active, input[type=submit]:active, input[type=reset]:active {
+            -moz-transform: scale(0.95);
+            -webkit-transform: scale(0.95);
+            -o-transform: scale(0.95);
+            -ms-transform: scale(0.95);
+            transform: scale(0.95);
+        }
+
+/*    input[type=text] {
+        background-color: #f6f6f6;
+        border: none;
+        color: #0d0d0d;
+        padding: 3px 32px;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 5px;
+        width: 85%;
+        border: 2px solid #f6f6f6;
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+        -webkit-border-radius: 5px 5px 5px 5px;
+        border-radius: 5px 5px 5px 5px;
+    }
+
+        input[type=text]:focus {
+            background-color: #fff;
+            border-bottom: 2px solid #5fbae9;
+        }*/
+
+    select {
+        background-color: #f6f6f6;
+        border: none;
+        color: #0d0d0d;
+        padding: 3px 32px;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 5px;
+        width: 85%;
+        border: 2px solid #f6f6f6;
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+        -webkit-border-radius: 5px 5px 5px 5px;
+        border-radius: 5px 5px 5px 5px;
+    }
+
+        select:focus {
+            background-color: #fff;
+            border-bottom: 2px solid #5fbae9;
+        }
+
+/*    input[type=password] {
+        background-color: #f6f6f6;
+        border: none;
+        color: #0d0d0d;
+        padding: 3px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 5px;
+        width: 85%;
+        border: 2px solid #f6f6f6;
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+        -webkit-border-radius: 5px 5px 5px 5px;
+        border-radius: 5px 5px 5px 5px;
+    }
+
+        input[type=password]:focus {
+            background-color: #fff;
+            border-bottom: 2px solid #5fbae9;
+        }*/
+
+    .title {
+        margin-top: 15px;
+    }
+
+        .title span {
+            font-size: 19px;
+            font-weight: 600;
+            color: dodgerblue;
+        }
+
+    ul.list-group.autocomplete.ng-pristine.ng-untouched.ng-valid.ng-not-empty {
+        position: absolute;
+        height: 202px;
+        overflow-y: scroll;
+        width: 417px;
+        margin-left: 10px;
+        margin-right: 10px;
+        z-index: 1000;
+    }
+
+    li.list-group-item.ng-binding.ng-scope:hover {
+        background-color: aliceblue;
+    }
+</style>
+<!--<div class="container">-->
+<div class="wrapper">
+    <div id="formContent_Login" class="formContent">
+        <!-- Tabs Titles -->
+        @*<div class="title">
+            <img src="~/Scripts/Lib_Web/Images/qlc.png.ico" id="icon1" />
+            <span>QUẢN LÝ BÁO CÁO</span>
+        </div>*@
+        @*<h2 class="inactive underlineHover" style="color:#0d0d0d;border-bottom:2px solid #5fbae9" onclick="tabLogin()"> Đăng Nhập </h2>*@
+        @*<h2 class="inactive underlineHover" onclick="tabRegis()">Đăng Ký </h2>*@
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <img style="width: 100px;height: 100px; display: block;margin: auto;" src="~/Scripts/Lib_Web/Images/quoc-huy.png" />
+            <h2 style="color:white; font-size:30px;"><strong>SỞ TÀI CHÍNH</strong></h2>
+            <h4 style="color: white;font-size: 18px;top: 36px;margin-top:0px;"><strong style="line-height: 1.5">HỆ THỐNG PHẦN MỀM - CƠ SỞ DỮ LIỆU TÀI CHÍNH <br> PHỤC VỤ CÔNG TÁC ĐIỀU HÀNH VÀ QUẢN LÝ NGÂN SÁCH</strong></h4>
+        </div>
+        <!-- Login Form -->
+        <div style="        margin-top: 36px;
+        padding: 8px 72px;
+        text-align: right;
+">
+            @*<input type="text" id="username" name="username" placeholder="username" style="text-align:center;padding: 14px 32px;">
+            <input type="password" id="password" name="login" placeholder="password" style="padding: 14px 32px;">*@
+            <div class="form-group">
+                <div class="input-icon right">
+                    <i class="fa fa-user"></i>
+                    <input type="text" placeholder="Tên tài khoản" id="username" name="username" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-icon right">
+                    <i class="fa fa-key"></i>
+                    <input type="password" placeholder="Mật khẩu" id="password" name="password" class="form-control">
+                </div>
+            </div>
+            @*<input type="button" value="Log In" onclick="Login()" />*@
+            <button onclick="Login()" class="btn btn-success" style="padding: 4px 17px !important;">
+                Đăng Nhập &nbsp;
+                <i class="fa fa-chevron-circle-right"></i>
+            </button>
+        </div>
+        <div class="tcenter" style="color: white; padding-top: 50px">
+            <h5>Địa chỉ: 01 Nguyễn Văn Huyên - Điện thoại: 0234.3824002 - Fax: 0234.3820368</h5>
+            <h5>Email: stc@thuathienhue.gov.vn - stcthuathienhue@mof.gov.vn</h5>
+        </div>
+        <!-- Remind Passowrd -->
+        @*<div id="formFooter">
+            <a class="underlineHover" href="#">Forgot Password?</a>
+        </div>*@
+
+    </div>
+    <div id="formContent_Register" class="formContent">
+        <!-- Tabs Titles -->
+        <div class="title">
+            <img src="~/Scripts/Lib_Web/Images/qlc.png.ico" id="icon1" />
+            <span>QUẢN LÝ BÁO CÁO</span>
+        </div>
+        <h2 class="inactive underlineHover" onclick="tabLogin()"> Đăng Nhập </h2>
+        <h2 class="inactive underlineHover" style="color:#0d0d0d;border-bottom:2px solid #5fbae9" ng-click="tabRegis()">Đăng Ký </h2>
+        <!-- Icon -->
+        @*<div class="fadeIn first">
+                <img src="~/Scripts/Lib_Web/Images/icon.png" id="icon" alt="User Icon" />
+            </div>*@
+        <!-- Login Form -->
+        <form>
+            <input type="text" placeholder="Tên đăng nhập (Email không dấu)" id="tenDN" onchange="changeV1()">
+            @*<span data-toggle="tooltip" data-placement="top" title="Chưa nhập Tên Đăng Nhập" id="notifyV1"><img src="~/Scripts/Lib_Web/Images/unchecked.jpg" /></span>*@
+            <input type="text" placeholder="Họ tên cán bộ" id="tenCB" onchange="changeV2()">
+            @*<span data-toggle="tooltip" data-placement="top" title="Chưa nhập Tên Cán Bộ" id="notifyV2"><img src="~/Scripts/Lib_Web/Images/unchecked.jpg" /></span>*@
+            <input type="text" placeholder="Chức vụ" ng-model="infoUser.tenCV">
+            <input type="password" placeholder="Mật khẩu" id="mk" onchange="changeV3()">
+            @*<span data-toggle="tooltip" data-placement="top" title="Chưa nhập Mật Khẩu" id="notifyV3"><img src="~/Scripts/Lib_Web/Images/unchecked.jpg" /></span>*@
+            <input type="password" placeholder="Nhập lại mật khẩu" id="mk2" onchange="changeV4()">
+            @*<span data-toggle="tooltip" data-placement="top" title="Chưa nhập Mật Khẩu" id="notifyV4"><img src="~/Scripts/Lib_Web/Images/unchecked.jpg" /></span>*@
+            <select id="Tinh" onchange="ChangeTinh()">
+                <option value="">---Chọn---</option>
+            </select>
+            <select id="CQTC">
+                <option value="">---Chọn---</option>
+            </select>
+            <input type="text" placeholder="Mã" id="DVma" style="width: 22%;" onchange="changeV5()">
+            <input type="text" placeholder="Tên đơn vị" id="DVten" style="width: 60%;" onchange="changeV5()">
+            @*<span data-toggle="tooltip" data-placement="top" title="Chưa nhập Đơn Vị" id="notifyV5"><img src="~/Scripts/Lib_Web/Images/unchecked.jpg" /></span>*@
+            <input type="text" placeholder="Điện thoại" id="DT" onchange="changeV6()">
+            @*<span data-toggle="tooltip" data-placement="top" title="Chưa nhập Số Điện Thoại" id="notifyV6"><img src="~/Scripts/Lib_Web/Images/unchecked.jpg" /></span>*@
+            <input type="text" placeholder="Email" id="Email">
+            <input type="text" placeholder="Điện thoại cơ quan" id="DTCQ">
+            <input type="text" placeholder="Fax cơ quan" id="FaxCQ">
+
+            <input type="button" value="Resign In" ng-click="Regisn()" />
+        </form>
+
+    </div>
+</div>
+<!--</div>-->
+<script>
+    document.getElementById("formContent_Login").style.display = "block";
+    document.getElementById("formContent_Register").style.display = "none";
+    function tabLogin() {
+        document.getElementById("formContent_Login").style.display = "block";
+        document.getElementById("formContent_Register").style.display = "none";
+    }
+    function tabRegis() {
+        document.getElementById("formContent_Login").style.display = "none";
+        document.getElementById("formContent_Register").style.display = "block";
+    }
+    function Login() {
+        var user = document.getElementById("username").value;
+        var pass = document.getElementById("password").value;
+        if (user.length == 0) {
+            alert("[Tài khoản] không được để trống !");
+            return;
+        }
+        if (pass.length == 0) {
+            alert("[Mật khẩu] không được để trống !");
+            return;
+        }
+        var obj = {
+            User: user,
+            Pass: pass
+        }
+        $.post('/Home/Login', obj, function (data, status) {
+            if (data == 0) {
+                //alert("Đăng nhập thành công !");
+                window.location.href = "/Home/Index";
+            }
+            else {
+                alert("Đăng nhập thất bại !");
+            }
+        }).fail(function (ajaxContext) {
+            alert("Status : " + ajaxContext.status + ", Status Text : " + ajaxContext.statusText);
+        });
+    }
+</script>
